@@ -1,0 +1,34 @@
+{% extends 'cloudmesh_gitissues/layout/index.jinja' %}
+
+
+{% block jumbotron %}
+<div class="jumbotron">
+
+<h1> Github Issues</h1>
+
+
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-6 placeholder">
+              <img src="{{ static("icons/ghost.png") }}" width="90%"/>
+
+            </div>
+            <div class="col-xs-6 col-sm-6 placeholder">
+
+              <p> The github issue portal allows you to easily browse
+              github issues and augment them with priorities.
+
+              Issues can than be viewed in order of priorities
+              </p>
+              <a class="btn btn-lg btn-primary"
+                 href="http://cloudmesh.github.io/"
+                 role="button">More information myCloudmesh &raquo;</a>
+              <br><br>
+
+            </div>
+          </div>
+
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}

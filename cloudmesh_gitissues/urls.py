@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^pages/', include('django.contrib.flatpages.urls')),
     url(r'^$', homepage, name='home'),
     #url(r'^issues/list/$', issue_list, name='issue_list'),
-    url(r'^issues/list/(?P<username>\w+)/(?P<repository>\w+)/$', issue_list, name='issue_list'),
+    url(r'^issues/list/(?P<username>\w+)/(?P<repository>[-\w]+)/$', issue_list, name='issue_list'),
     #url(r'^issues/(?P<cloud>\w+)/$', issue_list, name='cloudmesh_image'),
     url(r'^', include(router.urls)),
     url(r'^api-auth/',

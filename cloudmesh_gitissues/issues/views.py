@@ -29,7 +29,7 @@ def issue_list(request, username=None, repository=None):
     order = git.order
     location="{}/{}".format(username, repository)
     data = git.issues
-    
+
     return (list_table_plain(request,
                        title="Issues {}".format(location),
                        data=data,

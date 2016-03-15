@@ -6,7 +6,7 @@ import json
 from django.shortcuts import render
 from cloudmesh_client.common.ConfigDict import ConfigDict
 from cloudmesh_client.util import banner, path_expand
-
+from  ..settings  import REPOSITORIES
 
 from ..views import dict_table, list_table, list_table_plain
 from ..GitPriority import GitPriority
@@ -30,11 +30,14 @@ def issue_list(request, username=None, repository=None):
     location="{}/{}".format(username, repository)
     data = git.issues
 
+    print (REPOSITORIES)
+
     return (list_table_plain(request,
                        title="Issues {}".format(location),
                        data=data,
                        location="{}/{}".format(username, repository),
-                       order=order))
+                       order=order,
+                       repos=REPOSITORIES))
 
 
 

@@ -14,6 +14,15 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import sys
 
+REPOSITORIES = [
+    ("Client", "cloudmesh", "client"),
+    ("Portal", "cloudmesh", "portal"),
+    ("Workflow", "cloudmesh", "workflow"),
+    ("Yubikey", "cloudmesh", "yubikey"),
+    ("Big Data Stack", "futuresystems" "big-data-stack"),
+    ]
+
+
 SITE_ID = 1
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.template.defaulttags import register
 from sqlalchemy.orm import sessionmaker
 from django_jinja import library
-
+from  settings  import REPOSITORIES
 
 # noinspection PyPep8Naming
 def Session():
@@ -100,7 +100,8 @@ def list_table_plain(request, **kwargs):
 
 def homepage(request):
     context = {
-        'title': "Github Issues"
+        'title': "Github Issues",
+        "repos": REPOSITORIES
     }
     return render(request,
                   'cloudmesh_gitissues/home.jinja',

@@ -23,6 +23,7 @@ from .views import homepage
 from .issues.views import issue_list
 
 
+
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

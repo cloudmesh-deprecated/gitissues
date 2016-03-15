@@ -16,76 +16,48 @@
 # limitations under the License.                                          #
 # ------------------------------------------------------------------------#
 from __future__ import print_function
+
+import setuptools
 from setuptools import setup, find_packages
-# noinspection PyPep8Naming
-from setuptools.command.test import test as TestCommand
-from setuptools.command.install import install
-import sys
-import platform
 import os
-from cloudmesh_client.util import banner
-from cloudmesh_client.setup import os_execute
+import sys
+from cloudmesh_client import __version__
+import platform
 
-from cloudmesh_portal.version import __version__
+if sys.version_info < (2, 7, 10) or sys.version_info > (3, 0):
+    print (70 * "#")
+    print("WARNING: upgrade to python 2.7.10 or above but not 3 "
+          "are not supported. Your version is {}. failed.".format(sys.version_info))
+    print (70 * "#")
 
-banner("Installing Cloudmesh_portal {:}".format(__version__))
+command = None
+this_platform = platform.system().lower()
+if  this_platform in ['darwin']:
+    command = "easy_install readline"
+elif this_platform in ['windows']:
+    command = "pip install pyreadline"
+
+if command is not None:
+    print("Install readline")
+    os.system(command)
 
 requirements = [
-    "cloudmesh_client",
-    "cloudmesh_workflow",
-    "jinja2schema",
-    "django-rest-swagger",
-    "django-bootstrap3",
-    "django-admin-bootstrapped",
-    "django-bootstrap-themes",
-    "django-jinja",
-    "djangorestframework",
-    "markdown",
-    "django-filter",
-    "aldjemy",
-    "nwdiag",
-    "pygal"
+    'cloudmesh_client',
+    'cloudmesh_workflow',
+    'jinja2schema',
+    'django-rest-swagger',
+    'django-bootstrap3',
+    'django-admin-bootstrapped',
+    'django-bootstrap-themes',
+    'django-jinja',
+    'djangorestframework',
+    'markdown',
+    'django-filter',
+    'aldjemy',
+    'nwdiag',
+    'pygal',
+    'django-jinja-bootstrap-form'
 ]
-
-
-class UploadToPypi(install):
-    """Upload the package to pypi. -- only for Maintainers."""
-
-    description = __doc__
-
-    def run(self):
-        os.system("make clean")
-        commands = """
-            python setup.py install
-            python setup.py bdist_wheel            
-            python setup.py sdist --format=bztar,zip upload
-            python setup.py bdist_wheel upload
-            """
-        os_execute(commands)
-
-
-class InstallBase(install):
-    """Install the cloudmesh_gitissues package."""
-
-    description = __doc__
-
-    def run(self):
-        banner("Install readline")
-        commands = None
-        this_platform = platform.system().lower()
-        if this_platform in ['darwin']:
-            commands = """
-                easy_install readline
-                """
-        elif this_platform in ['windows']:
-            commands = """
-                pip install pyreadline
-                """
-        if commands:
-            os_execute(commands)
-        banner("Install Cloudmesh_portal {:}".format(__version__))
-        install.run(self)
-
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -93,62 +65,27 @@ def read(fname):
 
 home = os.path.expanduser("~")
 
-# home + '/.cloudmesh'
-# print [ (home + '/.cloudmesh/' + d, [os.path.join(d, f) for f in files]) for d, folders, files in os.walk('etc')],
-# sys.exit()
-
-"""
-data_files= [ (os.path.join(home, '.cloudmesh'),
-                [os.path.join(d, f) for f in files]) for d, folders, files in os.walk(
-                    os.path.join('cloudmesh_client', 'etc'))]
-"""
-
-"""
-matches = []
-for root, dirnames, filenames in os.walk(os.path.join('cloudmesh_client', 'etc')):
-  for filename in fnmatch.filter(filenames, '*'):
-    matches.append(os.path.join(root, filename).lstrip('cloudmesh_client/'))
-data_dirs = matches
-"""
-
-
-# Hack because for some reason requirements does not work
+# data_files= [
+#    (os.path.join(home, '.cloudmesh'),
+#    [os.path.join(d, f) for f in files]) for d, folders, files in os.walk(
+#                os.path.join('cloudmesh_client', 'etc'))]
 #
-# os.system("pip install -r requirements.txt")
+# print ("DDDD", data_files)
 
-class Tox(TestCommand):
-    user_options = [('tox-args=', 'a', "Arguments to pass to tox")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.tox_args = None
-
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        # import here, cause outside the eggs aren't loaded
-        import tox
-        import shlex
-        args = self.tox_args
-        if args:
-            args = shlex.split(self.tox_args)
-        errno = tox.cmdline(args=args)
-        sys.exit(errno)
+# package_data={
+#   'cloudmesh_client.etc': ['*.yaml', '*.py'],
+# },
 
 
 setup(
     version=__version__,
     name="cloudmesh_gitissues",
-    description="cloudmesh_gitissues - A portal for cloudmesh"
-                "with plugins",
+    description="cloudmesh_gitissues - Manageing Issue Priorities in github",
     long_description=read('README.rst'),
     license="Apache License, Version 2.0",
     author="Gregor von Laszewski",
     author_email="laszewski@gmail.com",
-    url="https://github.com/cloudmesh/cloudmesh_gitissues",
+    url="https://github.com/cloudmesh/gitissues",
     classifiers=[
         "Intended Audience :: Developers",
         "Intended Audience :: Education",
@@ -168,21 +105,15 @@ setup(
     keywords="cloud cmd commandshell plugins",
     packages=find_packages(),
     install_requires=requirements,
-    # include_package_data=True,
-    # data_files= data_files,
-    # package_data={'cloudmesh_gitissues': data_dirs},
-    # entry_points={
+    include_package_data=True,
+    #entry_points={
     #    'console_scripts': [
-    #        'issues = cloudmesh_client.shell.issues:main',
-    #        'ghost = cloudmesh_client.shell.ghost:main',
-    #
+    #        'cm = cloudmesh_client.shell.cm:main',
+    #        # 'ghost = cloudmesh_client.shell.ghost:main',
     #    ],
-    # },
-    tests_require=['tox'],
-    cmdclass={
-        'install': InstallBase,
-        'pypi': UploadToPypi,
-        'test': Tox,
-    },
-    dependency_links=[]
+    #},
+    # tests_require=['tox'],
+    # dependency_links = []
 )
+
+

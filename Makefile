@@ -19,6 +19,11 @@ doc:
 install:
 	cd ../client; python setup.py install
 
+upload_test:
+	python setup.py  sdist bdist bdist_wheel upload -r https://testpypi.python.org/pypi
+
+upload:
+	python setup.py  sdist bdist bdist_wheel upload -r https://pypi.python.org/pypi
 
 ######################################################################
 # CLEANING

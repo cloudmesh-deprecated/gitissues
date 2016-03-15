@@ -86,7 +86,7 @@ class GitPriority(object):
         self.issues = sanitized
 
     def __str__(self):
-        return (json.dumps(self.issues, indent=4))
+        return json.dumps(self.issues, indent=4)
 
     def table(self, compact=True):
 

@@ -50,6 +50,41 @@ class GitPriority(object):
             r = requests.get(url)
             self.issues.extend(r.json())
 
+    def sanitize(self):
+        print("SANITIZE")
+        sanitized = []
+        for issue in self.issues:
+            if "assignee" not in issue:
+                issue["assignee"] = {"login":""}
+            elif issue["assignee"] is None:
+                issue["assignee"] = {"login":""}
+
+            if "milestone" not in issue:
+                issue["milestone"] = {"title": ""}
+            elif issue["milestone"] is None:
+                issue["milestone"] = {"title": ""}
+
+            if "labels" not in issue:
+                issue["labels"] = [
+                    {'color': '5319e7',
+                    'name': '',
+                    'url': ''}]
+
+            priority = 999
+            if "body" not in issue:
+                issue["body"] = None
+            else:
+                body = issue["body"].splitlines()
+                if len(body) >= 1:
+                    line = str(body[0])
+
+                    if "P:" in line:
+                        priority = line.split("P:")[1]
+
+            issue["priority"] = int(priority)
+            sanitized.append(dict(issue))
+        self.issues = sanitized
+
     def __str__(self):
         return (json.dumps(self.issues, indent=4))
 

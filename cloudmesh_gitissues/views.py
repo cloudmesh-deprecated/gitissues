@@ -92,6 +92,11 @@ def list_table(request, **kwargs):
     #pprint(context)
     return render(request, 'cloudmesh_gitissues/list_table.jinja', context)
 
+def list_table_plain(request, **kwargs):
+    context = kwargs
+    #pprint(context)
+    return render(request, 'cloudmesh_gitissues/list_table_plain.jinja', context)
+
 
 def homepage(request):
     context = {

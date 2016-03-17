@@ -21,7 +21,7 @@ import setuptools
 from setuptools import setup, find_packages
 import os
 import sys
-from cloudmesh_client import __version__
+from cloudmesh_gitissues.version import __version__
 import platform
 
 if sys.version_info < (2, 7, 10) or sys.version_info > (3, 0):

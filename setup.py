@@ -101,8 +101,6 @@ setup(
         "Topic :: Software Development",
         "Topic :: Software Development :: User Interfaces",
         "Topic :: Software Development :: Version Control",
-        "Topic :: Software Development :: Version Control :: git",
-        "Topic :: Software Development :: Version Control :: github",        
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Utilities",
     ],

@@ -3,10 +3,10 @@ Github Issues with Priorities
 
 Github does not provide natively the support of priorities for issues.
 Cloudmesh Github Issues introduces a simple way to do so while not using
-labels, but by augmenting the issue boddy.
+labels, but by augmenting the issue body.
 
 We provide a simple django bootstrap based portal interface that looks
-into the github issues and finds in the first line of an isse the
+into the github issues and finds in the first line of an issue the
 priority defined with::
 
   P:10
@@ -19,8 +19,8 @@ Install
 --------
 
 The install requires an install from github so you are up to date and
-get all needed files. If you download the packae from pypi, we
-recommend that you do the github instalation instead. We also
+get all needed files. If you download the package from pypi, we
+recommend that you do the github installation instead. We also
 typically recommend using virtualenv.
 
 ::

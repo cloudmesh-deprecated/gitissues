@@ -27,9 +27,30 @@ Install
 Customization
 -------------
 
-To add other repositories, simple change the links in::
+In `cloudmesh_gitissues/settings.py` change the list of repositories that
+you like to include::
 
-  cloudmesh_gitissues/templates/layout/index.jinja
+    REPOSITORIES = [
+        ("Client", "cloudmesh", "client"),
+        ("Portal", "cloudmesh", "portal"),
+        ("Workflow", "cloudmesh", "workflow"),
+        ("Yubikey", "cloudmesh", "yubikey"),
+        ("Big Data Stack", "futuresystems" "big-data-stack"),
+        ]
+
+Each entry has the form::
+
+    (Label, git_username, git_repository)
+
+For example the entry for::
+
+    https://github.com/cloudmesh/client
+
+is::
+
+    ("Client", "cloudmesh", "client")
+
+A menu entry will be created for each repository.
 
 Run portal
 -----------

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from __future__ import print_function
 from pprint import pprint
 import json
 import requests
@@ -13,7 +14,8 @@ class GitPriority(object):
         ("title", "title", 40),
         ("assignee", "assignee", 10),
         ("milestone", "milestone", 10),
-        ("labels", "labels", 20)
+        ("location", "location", 20),
+        ("labels", "labels", 20),
     ]
 
 
@@ -50,10 +52,15 @@ class GitPriority(object):
             r = requests.get(url)
             self.issues.extend(r.json())
 
-    def sanitize(self):
-        print("SANITIZE")
+    def sanitize(self, username, repository):
+        print("SANITIZE", len(self.issues))
+
         sanitized = []
+
+        if self.issues is None:
+            return
         for issue in self.issues:
+
             if "assignee" not in issue:
                 issue["assignee"] = {"login":""}
             elif issue["assignee"] is None:
@@ -81,17 +88,16 @@ class GitPriority(object):
                     if "P:" in line:
                         priority = line.split("P:")[1]
 
-            issue["priority"] = int(priority)
+            issue[u"location"] = "{}/{}".format(username,repository)
+            issue[u"priority"] = int(priority)
             sanitized.append(dict(issue))
         self.issues = sanitized
+        # pprint(self.issues)
 
     def __str__(self):
         return json.dumps(self.issues, indent=4)
 
     def table(self, compact=True):
-
-
-
         #
         # Print header
         #

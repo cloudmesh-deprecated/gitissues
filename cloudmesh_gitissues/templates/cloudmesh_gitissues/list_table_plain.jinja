@@ -39,13 +39,16 @@
         <tr>
 
             {% for a in order %}
-               <td>
 
-                   {% if a in ["number"] %}
+               {% if a in ["number"] %}
+                   <td contenteditable="true">
                      <a href="https://github.com/{{location}}/issues/{{element["number"]}}">
                         {{ element[a] | safe}}
                      </a>
-                   {% endif %}
+                   </td>
+
+               {% else %}
+                  <td>
 
                    {% if a in ["assignee"] %}
                        {{ element[a]["login"] | safe}}
@@ -64,12 +67,12 @@
                    {% endif %}
 
 
-                   {% if a in ["priority", "title"] %}
+                   {% if a not in ["number", "assignee", "milestone", "labels"] %}
                         {{ element[a] | safe}}
                    {% endif %}
 
-               </td>
-
+                   </td>
+               {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}

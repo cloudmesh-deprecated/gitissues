@@ -19,7 +19,7 @@ REPOSITORIES = [
     ("Portal", "cloudmesh", "portal"),
     ("Workflow", "cloudmesh", "workflow"),
     ("Yubikey", "cloudmesh", "yubikey"),
-    ("Big Data Stack", "futuresystems" "big-data-stack"),
+    ("Big Data Stack", "futuresystems", "big-data-stack")
     ]
 
 

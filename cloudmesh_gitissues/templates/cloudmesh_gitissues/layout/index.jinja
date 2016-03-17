@@ -19,7 +19,6 @@
        integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs/jq-2.1.4,dt-1.10.10,r-2.0.0/datatables.min.css"/>
 
-
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <!-- Custom styles for this template -->
@@ -81,6 +80,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"
              role="button" aria-expanded="false">Issues </a>
           <ul class="dropdown-menu" role="menu">
+            <li><a href="/issues/list/">All</a></li>
             {% for repo in repos %}
                 <li><a href="/issues/list/{{repo[1]}}/{{repo[2]}}/">{{repo[0]}}</a></li>
             {% endfor %}

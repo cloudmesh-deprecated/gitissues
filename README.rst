@@ -1,5 +1,5 @@
-Cloudmesh Github Issues
-========================
+Github Issues with Priorities
+=======================================
 
 Github does not provide natively the support of priorities for issues.
 Cloudmesh Github Issues introduces a simple way to do so while not using
@@ -11,10 +11,17 @@ priority defined with::
 
   P:10
 
-where 10 is the priority. If no priority is given we use 999.
+where 10 is the priority. If no priority is given we use 999
+indicating a low priority.
+
 
 Install
 --------
+
+The install requires an install from github so you are up to date and
+get all needed files. If you download the packae from pypi, we
+recommend that you do the github instalation instead. We also
+typically recommend using virtualenv.
 
 ::
 
@@ -50,7 +57,7 @@ is::
 
     ("Client", "cloudmesh", "client")
 
-A menu entry will be created for each repository.
+A menu entry will be created for each repository with the given label.
 
 Run portal
 -----------
@@ -64,9 +71,6 @@ make view
 
 Bugs and enhancement suggestion
 --------------------------------
-
-* We should provide a way to define the repositories to viw with a
-  configuration file
 
 * We should be able to modify the priorities in the table, and have
   a save button that than updates all issues (anyone wants to help?)

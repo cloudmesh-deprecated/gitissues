@@ -60,7 +60,7 @@ def issue_list(request, username=None, repository=None):
         location="{}/{}".format(username, repository)
         data = git.issues
         print ("{} {}".format(location, len(git.issues)))
-        
+
         return (list_table_plain(request,
                            title="Issues {}".format(location),
                            data=data,

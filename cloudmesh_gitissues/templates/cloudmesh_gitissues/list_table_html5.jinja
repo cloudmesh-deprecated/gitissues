@@ -40,7 +40,7 @@
          {% for a in order %}
 
                {% if a in ["number"] %}
-                   <td contenteditable="true">
+                   <td> <!-- contenteditable="true" -->
                      <a href="https://github.com/{{location}}/issues/{{element["number"]}}">
                         {{ element[a] | safe}}
                      </a>

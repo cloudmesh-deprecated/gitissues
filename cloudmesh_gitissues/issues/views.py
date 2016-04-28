@@ -5,7 +5,7 @@ import json
 
 from django.shortcuts import render
 from cloudmesh_client.common.ConfigDict import ConfigDict
-from cloudmesh_client.util import banner, path_expand
+from cloudmesh_client.common.util import banner, path_expand
 from  ..settings  import REPOSITORIES
 
 from ..views import dict_table, list_table, list_table_plain, list_table_html5
